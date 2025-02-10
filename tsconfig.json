@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext", "WebWorker"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable", "ES2015", "WebWorker"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": false,
