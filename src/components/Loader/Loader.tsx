@@ -1,14 +1,8 @@
 // Loader.tsx
-import React from "react";
-import { ThreeDots } from "react-loader-spinner";
-import css from "./Loader.module.css";
+import { PuffLoader } from "react-spinners";
 
 const Loader: React.FC = () => {
-  return (
-    <div className={css.loaderContainer}>
-      <ThreeDots className={css.loader} ariaLabel="loading" visible={true} />
-    </div>
-  );
+  return <PuffLoader color="#ff0066" size={80} />;
 };
 
 export default Loader;
