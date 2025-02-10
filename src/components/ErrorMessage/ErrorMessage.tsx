@@ -1,13 +1,8 @@
-// ErrorMessage.tsx
-import React from "react";
-import css from "./ErrorMessage.module.css";
-
-interface ErrorMessageProps {
-  message: string;
+import s from "./ErrorMessage.module.css";
+export default function ErrorMessage() {
+  return (
+    <div>
+      <p className={s.errorMessage}>Something went wrong</p>
+    </div>
+  );
 }
-
-const ErrorMessage: React.FC<ErrorMessageProps> = ({ message }) => {
-  return <div className={css.error}>{message}</div>;
-};
-
-export default ErrorMessage;

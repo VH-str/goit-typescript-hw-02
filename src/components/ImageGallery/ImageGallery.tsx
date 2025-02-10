@@ -1,28 +1,22 @@
-// ImageGallery.tsx
-import React from "react";
+import s from "./ImageGallery.module.css";
 import ImageCard from "../ImageCard/ImageCard";
-import css from "./ImageGallery.module.css";
-import { ImageData } from "../../images-api";
+import { Item } from "../../types/Item";
 
-interface ImageGalleryProps {
-  items: ImageData[];
-  onImageClick: (image: ImageData) => void;
-}
-
-const ImageGallery: React.FC<ImageGalleryProps> = ({ items, onImageClick }) => {
-  return (
-    <ul className={css.gallery}>
-      {items.map((item) => (
-        <li className={css.galleryItem} key={item.id}>
-          <ImageCard
-            src={item.smallURL}
-            alt={item.description}
-            onClick={() => onImageClick(item)}
-          />
-        </li>
-      ))}
-    </ul>
-  );
+type Props = {
+  items: Item[];
+  onModalOpen: (arg: Item) => void;
 };
 
-export default ImageGallery;
+export default function ImageGallery({ items, onModalOpen }: Props) {
+  return (
+    <ul className={s.list}>
+      {items.map((item) => {
+        return (
+          <li className={s.listItem} key={item.id}>
+            <ImageCard values={item} handleClick={onModalOpen} />
+          </li>
+        );
+      })}
+    </ul>
+  );
+}

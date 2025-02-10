@@ -1,8 +1,8 @@
-// Loader.tsx
-import { PuffLoader } from "react-spinners";
-
-const Loader: React.FC = () => {
-  return <PuffLoader color="#ff0066" size={80} />;
-};
-
-export default Loader;
+import { InfinitySpin } from "react-loader-spinner";
+export default function Loader() {
+  return (
+    <div>
+      <InfinitySpin width="200" color="#005EFF" />
+    </div>
+  );
+}

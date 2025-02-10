@@ -1,45 +1,43 @@
-// SearchBar.tsx
-import React from 'react';
-import { BsSearch } from 'react-icons/bs';
-import toast from 'react-hot-toast';
-import css from './SearchBar.module.css';
+import s from "./SearchBar.module.css";
+import { FormEvent, useState } from "react";
+import { IoIosSearch } from "react-icons/io";
+import toast from "react-hot-toast";
 
-interface SearchBarProps {
-  onSubmit: (query: string) => void;
-}
+type Props = {
+  onSubmit: (value: string) => void;
+};
 
-const SearchBar: React.FC<SearchBarProps> = ({ onSubmit }) => {
-  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-    const form = evt.currentTarget;
-    const query = new FormData(form).get('query') as string;
+export default function SearchBar({ onSubmit }: Props) {
+  const [query, setQuery] = useState<string>("");
 
-    if (!query.trim()) {
-      toast('You must enter text to search for images');
+  const handleSubmit = (e: FormEvent): void => {
+    e.preventDefault();
+    const processedQuery = query.trim();
+
+    if (!processedQuery) {
+      toast.error("Prompt required");
       return;
     }
-
-    onSubmit(query.trim());
-    form.reset();
+    onSubmit(processedQuery);
+    setQuery("");
   };
 
   return (
-    <header className={css.container}>
-      <form onSubmit={handleSubmit} className={css.form}>
+    <header className={s.header}>
+      <form className={s.form} onSubmit={handleSubmit}>
         <input
-          name="query"
-          className={css.input}
           type="text"
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
+          value={query}
+          onChange={(e) => setQuery(() => e.target.value)}
+          className={s.input}
         />
-        <button type="submit" className={css.searchButton}>
-          <BsSearch size={20} />
+        <button type="submit" className={s.searchButton}>
+          <IoIosSearch className={s.searchButtonImage} />
         </button>
       </form>
     </header>
   );
-};
-
-export default SearchBar;
+}

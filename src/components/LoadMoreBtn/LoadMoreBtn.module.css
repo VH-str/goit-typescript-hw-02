@@ -1,21 +1,22 @@
-.loadMoreBtn {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  background-color: #3f51b5;
+.loadBtn {
+  padding: 15px 25px;
+  outline: none;
   border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  margin-bottom: 15px;
+  font-size: 18px;
+  color: #ececec;
 }
 
-.loadMoreBtn:hover {
-  background-color: #303f9f;
+.loadBtn:hover {
+  background-color: #121212;
 }
 
-.loadMoreBtn:active {
-  background-color: #1a237e;
+@media (prefers-color-scheme: light) {
+  .loadBtn {
+    background-color: #ececec;
+    color: #121212;
+  }
+  .loadBtn:hover {
+    background-color: #dedede;
+  }
 }

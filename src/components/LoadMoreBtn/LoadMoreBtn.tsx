@@ -1,17 +1,13 @@
-// LoadMoreBtn.tsx
-import React from "react";
-import css from "./LoadMoreBtn.module.css";
+import s from "./LoadMoreBtn.module.css";
 
-interface LoadMoreBtnProps {
+type Props = {
   onClick: () => void;
-}
+};
 
-const LoadMoreBtn: React.FC<LoadMoreBtnProps> = ({ onClick }) => {
+export default function LoadMoreBtn({ onClick }: Props) {
   return (
-    <button className={css.loadMoreBtn} onClick={onClick}>
+    <button className={s.loadBtn} type="button" onClick={onClick}>
       Load more
     </button>
   );
-};
-
-export default LoadMoreBtn;
+}

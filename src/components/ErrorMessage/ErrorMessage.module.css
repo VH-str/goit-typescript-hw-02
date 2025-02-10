@@ -1,9 +1,5 @@
-.error {
-  color: #d32f2f;
-  background-color: #ffebee;
-  border: 1px solid #f44336;
-  padding-top: 60px;
-  margin: 10px 0;
-  text-align: center;
-  border-radius: 4px;
+.errorMessage {
+  margin: 20px auto 0;
+  color: #cd0101;
+  font-size: 20px;
 }

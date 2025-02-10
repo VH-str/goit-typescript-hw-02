@@ -1,31 +1,20 @@
-// ImageCard.tsx
-import React from "react";
-import css from "./ImageCard.module.css";
+import s from "./ImageCard.module.css";
+import { Item } from "../../types/Item";
 
-interface ImageCardProps {
-  src: string;
-  alt: string;
-  onClick: () => void;
-}
-
-const ImageCard: React.FC<ImageCardProps> = ({ src, alt, onClick }) => {
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (e.key === "Enter" || e.key === " ") {
-      onClick();
-    }
-  };
-
-  return (
-    <div
-      className={css.card}
-      role="button"
-      tabIndex={0}
-      onClick={onClick}
-      onKeyDown={handleKeyDown}
-    >
-      <img src={src} alt={alt} className={css.image} />
-    </div>
-  );
+type Props = {
+  values: Item;
+  handleClick: (arg: Item) => void;
 };
 
-export default ImageCard;
+export default function ImageCard({ values, handleClick }: Props) {
+  return (
+    <div className={s.wrapper}>
+      <img
+        className={s.image}
+        src={values.urls?.small}
+        alt={values.alt_description}
+        onClick={() => handleClick(values)}
+      />
+    </div>
+  );
+}

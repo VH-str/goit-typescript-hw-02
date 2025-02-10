@@ -1,50 +1,40 @@
-// ImageModal.tsx
-import React from "react";
+import { Item } from "../../types/Item";
+import s from "./ImageModal.module.css";
 import Modal from "react-modal";
-import css from "./ImageModal.module.css";
-import { ImageData } from "../../images-api";
 
-interface ImageModalProps {
+type Props = {
   isOpen: boolean;
-  image: ImageData;
+  current: Item | null;
   onClose: () => void;
-}
+};
 
-const ImageModal: React.FC<ImageModalProps> = ({ isOpen, image, onClose }) => {
-  if (!image) return null;
+export default function ImageModal({ isOpen, current, onClose }: Props) {
+  if (!current) return null;
 
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onClose}
-      className={css.modalContent}
-      overlayClassName={css.modalOverlay}
-      contentLabel="Image Modal"
+      shouldCloseOnEsc={true}
+      shouldCloseOnOverlayClick={true}
+      overlayClassName={s.overlay}
+      className={s.modalContent}
     >
-      <button onClick={onClose} className={css.modalCloseButton}>
-        &times;
-      </button>
-      <div>
+      <div className={s.modalContentWrapper}>
         <img
-          src={image.regularURL}
-          alt={image.description}
-          className={css.modalImage}
+          src={current.urls?.regular}
+          alt={current.alt_description}
+          className={s.modalImage}
         />
-        <div className={css.modalInfo}>
-          <h2>{image.description}</h2>
-          <p>
-            Author:{" "}
-            {image.author.portfolio ? (
-              <a href={image.author.portfolio}>{image.author.name}</a>
-            ) : (
-              image.author.name
-            )}
-          </p>
-          <p>Likes: {image.likes}</p>
-        </div>
+        <ul className={s.description}>
+          <li>{current.description}</li>
+          <li>User: {current.user?.username}</li>
+          <li>Likes: {current.likes}</li>
+          <li>
+            Created: {new Date(current.created_at as string).toLocaleString()}
+          </li>
+        </ul>
       </div>
     </Modal>
   );
-};
-
-export default ImageModal;
+}
