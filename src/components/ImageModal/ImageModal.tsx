@@ -33,7 +33,12 @@ const ImageModal: React.FC<ImageModalProps> = ({ isOpen, image, onClose }) => {
         <div className={css.modalInfo}>
           <h2>{image.description}</h2>
           <p>
-            Author: <a href={image.author.portfolio}>{image.author.name}</a>
+            Author:{" "}
+            {image.author.portfolio ? (
+              <a href={image.author.portfolio}>{image.author.name}</a>
+            ) : (
+              image.author.name
+            )}
           </p>
           <p>Likes: {image.likes}</p>
         </div>
