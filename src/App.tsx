@@ -15,7 +15,7 @@ import { Item } from "./types/Item";
 import "./App.css";
 
 function App() {
-  const [data, setData] = useState<Array<object>>([]);
+  const [data, setData] = useState<Array<Item>>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
@@ -64,7 +64,7 @@ function App() {
     }
   };
 
-  const handleModalOpen = (elem: Record<string, unknown>): void => {
+  const handleModalOpen = (elem: Item): void => {
     if (isModalOpen) return;
     setCurrentElem(elem);
     setIsModalOpen(true);
